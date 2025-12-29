@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Fashion Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar" id="navbar"></nav>
+
+    <div class="container product-details-page">
+        <div class="loading" id="loading">Loading product...</div>
+
+        <div id="productContent" style="display: none;">
+            <!-- Product Details -->
+            <div class="product-layout">
+                <div class="product-images">
+                    <div class="main-image">
+                        <img id="mainImage" src="" alt="Product">
+                    </div>
+                    <div class="thumbnail-images" id="thumbnails"></div>
+                </div>
+
+                <div class="product-info-section">
+                    <h1 id="productName"></h1>
+                    
+                    <div class="product-rating">
+                        <div class="stars" id="productRating"></div>
+                        <span id="reviewCount"></span>
+                    </div>
+
+                    <div class="product-price" id="productPrice"></div>
+
+                    <div class="product-description" id="productDescription"></div>
+
+                    <div class="product-options">
+                        <!-- Size Selection -->
+                        <div class="option-group" id="sizeGroup" style="display: none;">
+                            <label>Size:</label>
+                            <div class="size-selector" id="sizeSelector"></div>
+                            <span class="error-message" id="sizeError"></span>
+                        </div>
+
+                        <!-- Color Selection -->
+                        <div class="option-group" id="colorGroup" style="display: none;">
+                            <label>Color:</label>
+                            <div class="color-selector" id="colorSelector"></div>
+                        </div>
+
+                        <!-- Quantity -->
+                        <div class="option-group">
+                            <label>Quantity:</label>
+                            <div class="quantity-selector">
+                                <button onclick="changeQuantity(-1)">-</button>
+                                <input type="number" id="quantity" value="1" min="1" max="10">
+                                <button onclick="changeQuantity(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stock-info" id="stockInfo"></div>
+
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-large" onclick="addToCartHandler()" id="addToCartBtn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn btn-outline btn-large" onclick="addToWishlistHandler()">
+                            <i class="far fa-heart"></i> Add to Wishlist
+                        </button>
+                    </div>
+
+                    <div class="product-meta">
+                        <p><strong>Category:</strong> <span id="productCategory"></span></p>
+                        <p><strong>Brand:</strong> <span id="productBrand"></span></p>
+                        <p><strong>Material:</strong> <span id="productMaterial"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="reviews-section">
+                <h2>Customer Reviews</h2>
+                
+                <div class="reviews-summary" id="reviewsSummary"></div>
+
+                <div class="write-review" id="writeReview" style="display: none;">
+                    <h3>Write a Review</h3>
+                    <form id="reviewForm">
+                        <div class="form-group">
+                            <label>Rating *</label>
+                            <div class="star-rating-input">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="rating" value="0">
+                            <span class="error-message" id="ratingError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Title *</label>
+                            <input type="text" id="reviewTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Review *</label>
+                            <textarea id="reviewComment" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
+                </div>
+
+                <div class="reviews-list" id="reviewsList"></div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="related-products">
+                <h2>Related Products</h2>
+                <div class="products-grid" id="relatedProducts"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <footer class="footer"></footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/productDetails.js"></script>
+
+    <style>
+        .product-details-page { padding: 100px 20px 40px; }
+        .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .product-images { position: sticky; top: 90px; }
+        .main-image { border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+        .main-image img { width: 100%; height: 500px; object-fit: cover; }
+        .thumbnail-images { display: flex; gap: 10px; }
+        .thumbnail-images img { width: 80px; height: 80px; object-fit: cover; border: 2px solid transparent; border-radius: 4px; cursor: pointer; }
+        .thumbnail-images img:hover, .thumbnail-images img.active { border-color: #000; }
+        .product-info-section h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .product-price { font-size: 2rem; font-weight: 700; margin: 1.5rem 0; }
+        .original-price { font-size: 1.5rem; color: #757575; text-decoration: line-through; margin-right: 10px; }
+        .sale-price { color: #f44336; }
+        .product-description { line-height: 1.8; margin: 2rem 0; color: #555; }
+        .option-group { margin: 1.5rem 0; }
+        .option-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+        .size-selector { display: flex; gap: 10px; flex-wrap: wrap; }
+        .size-option { padding: 10px 20px; border: 2px solid #e0e0e0; border-radius: 4px; cursor: pointer; background: white; }
+        .size-option:hover { border-color: #000; }
+        .size-option.active { border-color: #000; background: #000; color: white; }
+        .size-option.disabled { opacity: 0.3; cursor: not-allowed; }
+        .color-selector { display: flex; gap: 10px; }
+        .color-option { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; }
+        .color-option.active { border-color: #000; }
+        .quantity-selector { display: flex; align-items: center; gap: 10px; }
+        .quantity-selector button { width: 40px; height: 40px; border: 1px solid #e0e0e0; background: white; border-radius: 4px; }
+        .quantity-selector input { width: 60px; text-align: center; border: 1px solid #e0e0e0; border-radius: 4px; padding: 8px; }
+        .stock-info { padding: 15px; background: #e8f5e9; border-radius: 4px; margin: 1.5rem 0; color: #2e7d32; }
+        .stock-info.out-of-stock { background: #ffebee; color: #c62828; }
+        .product-actions { display: flex; gap: 15px; margin: 2rem 0; }
+        .product-meta { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e0e0e0; }
+        .product-meta p { margin: 0.5rem 0; color: #555; }
+        .reviews-section, .related-products { margin-top: 60px; }
+        .reviews-summary { background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 2rem; }
+        .write-review { background: white; padding: 30px; border: 1px solid #e0e0e0; border-radius: 8px; margin: 2rem 0; }
+        .star-rating-input { display: flex; gap: 5px; font-size: 2rem; cursor: pointer; }
+        .star-rating-input i { color: #ddd; transition: color 0.2s; }
+        .star-rating-input i:hover, .star-rating-input i.active { color: #ffc107; }
+        .reviews-list { display: grid; gap: 20px; }
+        .review-card { padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; }
+        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .review-author { font-weight: 600; }
+        .review-date { color: #757575; font-size: 0.875rem; }
+        .review-title { font-weight: 600; margin-bottom: 0.5rem; }
+        .review-comment { color: #555; line-height: 1.6; }
+        @media (max-width: 768px) {
+            .product-layout { grid-template-columns: 1fr; }
+            .product-actions { flex-direction: column; }
+        }
+    </style>
+</body>
+</html>

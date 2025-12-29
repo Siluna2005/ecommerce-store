@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - Fashion Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar" id="navbar"></nav>
+
+    <div class="container wishlist-page">
+        <div class="page-header">
+            <h1><i class="fas fa-heart"></i> My Wishlist</h1>
+            <p>Save your favorite items here</p>
+        </div>
+
+        <div class="loading" id="loading">Loading wishlist...</div>
+        
+        <div id="wishlistContent" style="display: none;">
+            <div class="products-grid" id="wishlistGrid"></div>
+        </div>
+
+        <div class="empty-wishlist" id="emptyWishlist" style="display: none;">
+            <i class="far fa-heart"></i>
+            <h3>Your wishlist is empty</h3>
+            <p>Save items you love so you don't lose sight of them!</p>
+            <a href="/pages/products.html" class="btn btn-primary">Start Shopping</a>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <footer class="footer"></footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/wishlist.js"></script>
+
+    <style>
+        .wishlist-page { padding: 100px 20px 40px; min-height: 80vh; }
+        .page-header { text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { font-size: 2.5rem; color: #e91e63; }
+        .page-header p { color: #757575; }
+        .empty-wishlist { text-align: center; padding: 80px 20px; }
+        .empty-wishlist i { font-size: 5rem; color: #e0e0e0; margin-bottom: 2rem; }
+        .empty-wishlist h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .empty-wishlist p { color: #757575; margin-bottom: 2rem; }
+        .wishlist-product-card { position: relative; }
+        .remove-wishlist-btn { position: absolute; top: 10px; right: 10px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; background: white; border: none; color: #e91e63; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .remove-wishlist-btn:hover { transform: scale(1.1); background: #e91e63; color: white; }
+    </style>
+</body>
+</html>

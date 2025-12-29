@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Fashion Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Include same navbar as home page -->
+    <nav class="navbar" id="navbar"></nav>
+
+    <div class="container products-page">
+        <div class="page-header">
+            <h1>Our Products</h1>
+            <p>Browse our collection of trendy clothing</p>
+        </div>
+
+        <div class="products-layout">
+            <!-- Filters Sidebar -->
+            <aside class="filters-sidebar">
+                <h3>Filters</h3>
+                
+                <!-- Category Filter -->
+                <div class="filter-group">
+                    <h4>Category</h4>
+                    <label><input type="radio" name="category" value="all" checked> All</label>
+                    <label><input type="radio" name="category" value="Men"> Men</label>
+                    <label><input type="radio" name="category" value="Women"> Women</label>
+                    <label><input type="radio" name="category" value="Kids"> Kids</label>
+                    <label><input type="radio" name="category" value="Accessories"> Accessories</label>
+                    <label><input type="radio" name="category" value="Shoes"> Shoes</label>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <input type="range" id="minPrice" min="0" max="500" value="0">
+                    <input type="range" id="maxPrice" min="0" max="500" value="500">
+                    <div class="price-range">
+                        <span>$<span id="minPriceValue">0</span></span>
+                        <span>$<span id="maxPriceValue">500</span></span>
+                    </div>
+                </div>
+
+                <!-- On Sale Filter -->
+                <div class="filter-group">
+                    <label>
+                        <input type="checkbox" id="onSaleFilter"> On Sale Only
+                    </label>
+                </div>
+
+                <button class="btn btn-primary" id="applyFilters">Apply Filters</button>
+                <button class="btn btn-outline" id="clearFilters">Clear All</button>
+            </aside>
+
+            <!-- Products Section -->
+            <div class="products-content">
+                <!-- Sort and View Options -->
+                <div class="products-toolbar">
+                    <div class="results-count">
+                        <span id="resultsCount">0 Products</span>
+                    </div>
+                    <div class="sort-options">
+                        <label>Sort by:</label>
+                        <select id="sortBy">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="productsGrid">
+                    <div class="loading">Loading products...</div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <footer class="footer"></footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/products.js"></script>
+</body>
+</html>

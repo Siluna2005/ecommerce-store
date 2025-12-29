@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Fashion Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar" id="navbar"></nav>
+
+    <div class="container orders-page">
+        <h1>My Orders</h1>
+        
+        <div class="loading" id="loading">Loading orders...</div>
+        <div id="ordersContent" style="display: none;"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <footer class="footer"></footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/orders.js"></script>
+
+    <style>
+        .orders-page { padding: 100px 20px 40px; min-height: 80vh; }
+        .orders-page h1 { margin-bottom: 2rem; }
+        .order-card { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e0e0e0; }
+        .order-number { font-weight: 700; font-size: 1.1rem; }
+        .order-date { color: #757575; }
+        .order-status { padding: 5px 15px; border-radius: 20px; font-size: 0.875rem; font-weight: 600; }
+        .status-pending { background: #fff3e0; color: #e65100; }
+        .status-processing { background: #e3f2fd; color: #0d47a1; }
+        .status-shipped { background: #e8f5e9; color: #2e7d32; }
+        .status-delivered { background: #c8e6c9; color: #1b5e20; }
+        .status-cancelled { background: #ffebee; color: #c62828; }
+        .order-items { margin: 1rem 0; }
+        .order-item { display: flex; gap: 15px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+        .order-item:last-child { border-bottom: none; }
+        .order-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
+        .item-info { flex: 1; }
+        .item-name { font-weight: 600; margin-bottom: 5px; }
+        .item-details { color: #757575; font-size: 0.875rem; }
+        .order-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
+        .order-total { font-size: 1.2rem; font-weight: 700; }
+        .empty-orders { text-align: center; padding: 60px 20px; }
+        .empty-orders i { font-size: 4rem; color: #e0e0e0; margin-bottom: 1rem; }
+        @media (max-width: 768px) {
+            .order-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .order-footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</body>
+</html>

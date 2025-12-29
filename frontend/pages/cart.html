@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Fashion Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Fashion Store</span>
+            </a>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/pages/products.html" class="nav-link">Products</a>
+                <a href="/pages/wishlist.html" class="nav-link">
+                    <i class="far fa-heart"></i> Wishlist
+                    <span class="badge" id="wishlistBadge">0</span>
+                </a>
+                <a href="/pages/cart.html" class="nav-link active">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <button class="user-btn" id="userBtn">
+                        <i class="far fa-user-circle"></i>
+                        <span id="userName">Account</span>
+                    </button>
+                    <div class="dropdown" id="userDropdown">
+                        <a href="/pages/profile.html"><i class="far fa-user"></i> Profile</a>
+                        <a href="/pages/orders.html"><i class="far fa-box"></i> Orders</a>
+                        <a href="/pages/admin/dashboard.html" id="adminLink" style="display: none;"><i class="fas fa-cog"></i> Admin Panel</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+                
+                <div class="auth-links" id="authLinks">
+                    <a href="/pages/login.html" class="nav-link">Login</a>
+                    <a href="/pages/register.html" class="btn btn-primary">Register</a>
+                </div>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Cart Content -->
+    <div class="container cart-page">
+        <h1 class="page-title">Shopping Cart</h1>
+
+        <div class="cart-layout">
+            <!-- Cart Items -->
+            <div class="cart-items" id="cartItems">
+                <div class="loading">Loading cart...</div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>Tax (8%):</span>
+                    <span id="tax">$0.00</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="shipping">$10.00</span>
+                </div>
+                
+                <hr>
+                
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">$0.00</span>
+                </div>
+
+                <button class="btn btn-primary btn-block" onclick="goToCheckout()">
+                    <i class="fas fa-lock"></i> Proceed to Checkout
+                </button>
+                
+                <a href="/pages/products.html" class="btn btn-outline btn-block">
+                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                </a>
+                
+                <button class="btn btn-secondary btn-block" onclick="clearCart()" style="margin-top: 1rem;">
+                    <i class="fas fa-trash"></i> Clear Cart
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Fashion Store</h3>
+                    <p>Your one-stop shop for trendy clothing</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="/">Home</a>
+                    <a href="/pages/products.html">Products</a>
+                    <a href="/pages/cart.html">Cart</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <a href="#">Contact Us</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Returns</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Fashion Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/cart.js"></script>
+</body>
+</html>
